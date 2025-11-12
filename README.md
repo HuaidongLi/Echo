@@ -1,5 +1,33 @@
 # Echo — 开源社区系统
 
+>本项目是fork而来，感谢原作者的不吝开源，搭建了整个项目，但是在复盘的过程当中，发现了项目当中的很多有待改进之处。后续会整理与程序逻辑框图之后开源，敬请关注。
+
+作为简历当中的项目，改进点简述：
+1. 前后端交互逻辑非现下主流 MVC 的前后端分离的模式，将使用 Vue3 进行前后端整体项目重构。
+2. 本人主要的求职目的为后端开发，故下列改进方向主要针对于后端：
+   - 帖子直接存储于 MySQL 当中，对于较长的文本来说，不是一件好事，很容易导致 change buffer 和 buffer pool 的频繁刷盘，文件 IO 压力过大。
+   - Redis 缓存了帖子的点赞以及博主的followee，在生产条件下会产生大 key 问题，需进行迁移。
+   - Spring Security 的认证部分可以使用自定义拦截器替代，鉴权部分使用过滤器进行替代，
+   - 帖子的查询可能出现缓存穿透与击穿。
+3. 引入 AI，对帖子实现摘要功能，但需避免幻觉、Prompt 注入等问题。
+4. 由于要解决 1，引入了对象存储功能，存在孤儿文件与不一致问题的解决方案。
+
+后续更新主要包括功能点的完善与改进、hightlight的整理，如有其他建议，请提交 issue。
+
+> This project is forked , thanks to the original author of the open source , build the entire project , but in the process of review , found a lot of the project to be improved . Subsequently will be organized with the program logic block diagram after the open source , please pay attention to .
+
+As a resume of the project , the improvement points are briefly described :
+1. Front and back end interaction logic is not the current mainstream MVC front and back end separation model , will use Vue3 for the front and back end of the overall project refactoring. 
+2. I am mainly looking for a job for the purpose of back-end development, so the following improvement direction is mainly aimed at the back-end:
+   - Posts are stored directly in MySQL, which is not a good thing for long text, and can easily lead to frequent flushes of the change buffer and buffer pool, resulting in too much file IO pressure.
+   - Redis caches the likes of posts and the followers of bloggers, which is a big key problem under production conditions and needs to be migrated.
+   - The authentication part of Spring Security can be replaced by a custom interceptor, and the authentication part can be replaced by a filter.
+   - The query of posts may have cache penetration and breakdown.
+3. Introduce AI to summarize the posts, but avoid problems such as illusions and Prompt injection. 4.
+4. introduce object storage function due to solve 1, there are orphan files with inconsistent problem solution.
+
+Subsequent updates mainly include the refinement and improvement of function points and the organization of hightlight. If you have any other suggestions, please submit an issue.
+
 ---
 
 <br>
